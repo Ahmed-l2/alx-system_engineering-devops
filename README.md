@@ -1,0 +1,1 @@
+Starting my BASH journey
