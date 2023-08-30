@@ -1,0 +1,2 @@
+#!/bin/bash
+mv --parents [A-Z]* /tmp/u
