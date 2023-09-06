@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $((10#octal_number))
+printf "%x\n" $DECIMAL
