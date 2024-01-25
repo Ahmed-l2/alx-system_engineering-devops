@@ -7,15 +7,17 @@ n=1
 while [ $n -le 20 ]
 do
 	echo $n
-	if [ $n == 4 ]
-	then
-		echo "bad luck from china"
-	elif [ $n == 9 ]
-	then
-		echo "bad luck from japan"
-	elif [ $n == 17 ]
-        then
-                echo "bad luck from italy"
-	fi
+	case $n in
+
+		4)
+			echo "bad luck from china"
+			;;
+		7)
+			echo "bad luck from japan"
+			;;
+		17)
+			echo "bad luck from italy"
+			;;
+	esac
 	((n++))
 done
