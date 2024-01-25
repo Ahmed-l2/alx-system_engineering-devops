@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Bash script that prints 'Best School' ten times
 n=10
 for ((i = 0; i < n; i++));
 do
