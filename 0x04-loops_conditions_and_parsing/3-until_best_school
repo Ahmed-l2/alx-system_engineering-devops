@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#Shell script that prints "Best School"
+n=0
+until [ $n == 10 ];
+do
+	echo "Best School"
+	((n++))
+done
