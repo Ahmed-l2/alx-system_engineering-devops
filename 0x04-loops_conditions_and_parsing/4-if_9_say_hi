@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#Shell script that prints "Best School" for 10 times
+#but for the 9th iteration, prints Hi on a new line
+n=0
+while [ $n -lt 10 ]
+do
+	if [ $n == 9 ]
+	then
+		echo "Hi"
+	fi
+	echo "Best School"
+	((n++))
+done
