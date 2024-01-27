@@ -11,13 +11,13 @@ start() {
 
 # Function to stop the service
 stop() {
-	pkill -f "$SERVICE"
+	kill "$(cat /var/run/my_process.pid)"
         rm /var/run/my_process.pid
         echo "manage_my_process stopped"
 }
 
 restart() {
-	pkill -f "$SERVICE"
+	kill "$(cat /var/run/my_process.pid)"
         rm /var/run/my_process.pid
 
 	$SERVICE &
