@@ -4,23 +4,25 @@
 SERVICE="./manage_my_process"
 
 start() {
-	$SERVICE start
-	echo "$$" > /var/run/my_process.pid
+	$SERVICE &
+	echo $! > /var/run/my_process.pid
 	echo "manage_my_process started"
 }
 
 # Function to stop the service
 stop() {
-	$SERVICE stop
-        rm /var/run/my_process.pid
+	pkill -f "$SERVICE"
+        rm -f /var/run/my_process.pid
         echo "manage_my_process stopped"
 }
 
 restart() {
-        $SERVICE stop
-        rm /var/run/my_process.pid
-	$SERVICE start
-	echo "$$" > /var/run/my_process.pid
+	pkill -f "$SERVICE"
+        rm -f /var/run/my_process.pid
+
+	$SERVICE &
+        echo $! > /var/run/my_process.pid
+
         echo "manage_my_process restarted"
 }
 
@@ -35,7 +37,9 @@ case "$1" in
         restart
         ;;
     *)
-        echo "Usage: manage_my_process {start|stop|restart}"
+        echo "Usage: $0 {start|stop|restart}"
         exit 1
         ;;
 esac
+
+exit 0
