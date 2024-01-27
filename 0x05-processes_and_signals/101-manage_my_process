@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#manages manage_my_process
+
+SERVICE="./manage_my_process"
+
+start() {
+	$SERVICE start
+	echo "$$" > /var/run/my_process.pid
+	echo "manage_my_process started"
+}
+
+# Function to stop the service
+stop() {
+	$SERVICE stop
+        rm /var/run/my_process.pid
+        echo "manage_my_process stopped"
+}
+
+restart() {
+        $SERVICE stop
+        rm /var/run/my_process.pid
+	$SERVICE start
+	echo "$$" > /var/run/my_process.pid
+        echo "manage_my_process restarted"
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        exit 1
+        ;;
+esac
