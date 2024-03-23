@@ -1,5 +1,5 @@
 #Using puppet to conenct to ssh server without password
-file { '/etc/ssh/sshd_config':
+file { '/etc/ssh/ssh_config':
   ensure  => present,
   content => "
     Host *
