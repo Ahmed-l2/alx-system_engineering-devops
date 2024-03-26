@@ -12,7 +12,6 @@ package { 'nginx':
 file { '/var/www/html/index.html':
   ensure  => file,
   content => 'Hello World!',
-  require => Package['nginx'],
 }
 
 file { '/etc/nginx/sites-available/default':
@@ -27,12 +26,9 @@ server {
         return 301 https://www.youtube.com/watch?v=dQw4w9WgXcQ;
     }
 }',
-  require => Package['nginx'],
-  notify  => Service['nginx'],
 }
 
 service { 'nginx':
   ensure  => running,
-  enable  => true,
-  require => File['/etc/nginx/sites-available/default'],
+  require => Package['nginx']
 }
