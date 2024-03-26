@@ -9,30 +9,26 @@ package { 'nginx':
   require => Exec['system_update'],
 }
 
-file { '/var/www/html/index.html':
-  ensure  => file,
-  content => 'Hello World!',
+service { 'nginx':
+  ensure  => running,
+  enable  => true,
+  require => Package['nginx']
 }
 
 file { '/etc/nginx/sites-available/default':
-  ensure  => file,
-  content => '
-server {
-    listen 80;
-    location = / {
-        root /var/www/html;
-    }
-    location = /redirect_me {
+  ensure  => present,
+  content => "
+    server {
+      listen 80;
+      root /var/www/html;
+      location = / {
+        return 200 'Hello World!';
+      }
+
+      location = /redirect_me {
         return 301 https://www.youtube.com/watch?v=dQw4w9WgXcQ;
+      }
     }
-}',
-}
-
-file { '/var/www/html/redirect_me':
-  ensure => directory,
-}
-
-service { 'nginx':
-  ensure  => running,
-  require => Package['nginx']
+  ",
+  notify  => Service['nginx'],
 }
