@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-
-#Configures Apache to return page containing 'Hello Holberton'
-
+# Configures Apache to return page containing 'Hello Holberton'
 echo "Hello Holberton" > /var/www/html/index.html
-
-echo "DocumentRoot /var/www/html" | tee /etc/apache2/sites-available/000-default.conf > /dev/null
-
 service apache2 restart
