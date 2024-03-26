@@ -3,6 +3,8 @@
 sudo apt-get update
 sudo apt-get install -y nginx
 
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/c404.html
+
 echo "server {
     listen 80;
     location / {
@@ -12,9 +14,9 @@ echo "server {
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=dQw4w9WgXcQ;
     }
-    location /rr {
-    	return 404 'Ceci n'est pas une page'
-	add_header Content-Type text/plain;
+    location = /c404 {
+    	root /usr/share/nginx/html;
+	internal;
     }
 }" | sudo tee /etc/nginx/sites-available/default
 
