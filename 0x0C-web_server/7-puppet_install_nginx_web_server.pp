@@ -28,6 +28,10 @@ server {
 }',
 }
 
+file { '/var/www/html/redirect_me':
+  ensure => directory,
+}
+
 service { 'nginx':
   ensure  => running,
   require => Package['nginx']
