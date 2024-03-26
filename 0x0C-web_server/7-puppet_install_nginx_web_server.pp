@@ -19,19 +19,13 @@ file { '/etc/nginx/sites-available/default':
   ensure  => present,
   content => "
     server {
-      listen 80;
-      root /var/www/html;
-      index index.html index.htm;
-
-
-      location = / {
+    listen 80;
+    location / {
         return 200 'Hello World!';
-      }
-
-      location = /redirect_me {
-        return 301 https://www.youtube.com/watch?v=dQw4w9WgXcQ;
-      }
+        add_header Content-Type text/plain;
     }
-  ",
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=dQw4w9WgXcQ;
+    }",
   notify  => Service['nginx'],
 }
