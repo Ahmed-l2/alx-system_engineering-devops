@@ -10,7 +10,7 @@ echo "server {
         add_header Content-Type text/plain;
     }
     location /redirect_me {
-        return 301 http://example.com;
+        return 301 https://www.youtube.com/watch?v=dQw4w9WgXcQ;
     }
 }" | sudo tee /etc/nginx/sites-available/default
 
