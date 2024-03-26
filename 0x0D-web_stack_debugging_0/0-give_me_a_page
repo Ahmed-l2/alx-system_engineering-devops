@@ -2,7 +2,4 @@
 # Configures Apache to return page containing 'Hello Holberton'
 
 echo "Hello Holberton" > /var/www/html/index.html
-echo "ServerName localhost" >> /etc/apache2.conf
-
-sudo service apache2 status
 service apache2 restart
