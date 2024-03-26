@@ -21,6 +21,9 @@ file { '/etc/nginx/sites-available/default':
     server {
       listen 80;
       root /var/www/html;
+      index index.html index.htm;
+
+
       location = / {
         return 200 'Hello World!';
       }
