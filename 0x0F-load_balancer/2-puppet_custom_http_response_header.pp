@@ -12,7 +12,7 @@ server {
         location / {
                 return 200 'Hello World!';
                 add_header Content-Type text/plain;
-		add_header X-Served-By ${fqdn};
+		add_header X-Served-By $HOSTNAME;
         }
 
         location /redirect_me {
