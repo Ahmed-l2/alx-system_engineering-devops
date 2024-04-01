@@ -12,8 +12,8 @@ frontend my_frontend
 
 backend my_backend_servers
     balance roundrobin
-    server web1 18.206.233.120:80 check
-    server web2 52.91.146.216:80 check
+    server 521150-web-01 18.206.233.120:80 check
+    server 521150-web-02 52.91.146.216:80 check
 EOF
 
 sudo systemctl restart haproxy
