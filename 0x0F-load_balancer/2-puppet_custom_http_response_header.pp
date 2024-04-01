@@ -1,7 +1,5 @@
 # Setup Ubuntu Server with nginx
 
-hostname=$(hostname)
-
 package { 'nginx':
   ensure  => installed,
 }
@@ -14,7 +12,7 @@ server {
         location / {
                 return 200 'Hello World!';
                 add_header Content-Type text/plain;
-		add_header X-Served-By $hostname;
+		add_header X-Served-By ${hostname};
         }
 
         location /redirect_me {
