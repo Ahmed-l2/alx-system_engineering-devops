@@ -2,18 +2,19 @@
 # Install and configure HAproxy on your lb-01 server.
 
 sudo apt-get update
-sudo apt-get install --no-install-recommends software-properties-common -y
-sudo add-apt-repository ppa:vbernat/haproxy-2.0 -y
-sudo apt-get update
-sudo apt-get install haproxy=2.0.\* -y
+sudo apt-get install haproxy -y
+sudo echo "ENABLED=1" >> /etc/default/haproxy
 
 # Configure HAProxy
 cat <<EOF | sudo tee /etc/haproxy/haproxy.cfg
-frontend my_frontend
-    bind *:80
-    default_backend my_backend_servers
+frontend ahmed-codes.tech
+    timeout client  30000
+    bind 0:80
+    default_backend ahmed-codes.tech_backend
 
-backend my_backend_servers
+backend ahmed-codes.tech_backend
+    timeout connect  3000
+    timeout server  30000
     balance roundrobin
     server 521150-web-01 18.206.233.120:80 check
     server 521150-web-02 52.91.146.216:80 check
