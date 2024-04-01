@@ -1,24 +1,22 @@
 # Setup Ubuntu Server with nginx
 
-exec { 'update server':
+exec { 'update':
   command  => 'sudo apt-get update',
   provider => 'shell',
 }
 
 package { 'nginx':
   ensure   => present,
+  provider => 'apt'
 }
 
 file_line { 'HTTP header':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  line   => "	location / {
-  add_header X-Served-By ${hostname};",
-  match  => '^\tlocation / {',
+  provider    => shell,
+  environment => ["HOST=${hostname}"],
+  command     => 'sudo sed -i "s/include \/etc\/nginx\/sites-enabled\/\*;/include \/etc\/nginx\/sites-enabled\/\*;\n\tadd_header X-Served-By \"$HOST\";/" /etc/nginx/nginx.conf',
 }
 
-service { 'nginx':
-  ensure  => 'running',
-  enable  => true,
-  require => Package['nginx']
+exec { 'restart Nginx':
+  provider => shell,
+  command  => 'sudo service nginx restart',
 }
