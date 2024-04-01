@@ -1,5 +1,7 @@
 # Setup Ubuntu Server with nginx
 
+hostname=$(hostname)
+
 package { 'nginx':
   ensure  => installed,
 }
