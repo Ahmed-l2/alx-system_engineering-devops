@@ -1,6 +1,5 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # Displays information about subdomains.
-
 
 subdomain_info () {
 	output=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:')
