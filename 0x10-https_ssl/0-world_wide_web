@@ -1,15 +1,22 @@
 #!/bin/bash
 # Displays information about subdomains.
 
-# Check if a domain name is provided as a command-line argument
-if [ $# -ne 1 ]; then
-    exit 1
+
+subdomain_info () {
+	output=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:')
+	subdomain=$2
+	record_type=$(echo "$output" | awk 'NR==2 {print $4}')
+	destination=$(echo "$output" | awk 'NR==2 {print $5}')
+
+	printf "The subdomain %s is a %s record and points to %s\n" "$subdomain" "$record_type" "$destination"
+}
+
+if [ "$#" -eq 1 ]
+then
+	subdomain_info "$1" "www"
+	subdomain_info "$1" "lb-01"
+	subdomain_info "$1" "web-01"
+	subdomain_info "$1" "web-02"
+else
+	subdomain_info "$1" "$2"
 fi
-
-output=$(dig "$1" | grep -A1 'ANSWER SECTION:')
-subdomain=$(echo "$output" | awk '{print $1}' | cut -d'.' -f1)  # Extract only the subdomain part
-record_type=$(echo "$output" | awk '{print $4}')
-destination=$(echo "$output" | awk '{print $5}')
-
-echo "The subdomain $subdomain is a $record_type record and points to $destination"
-
