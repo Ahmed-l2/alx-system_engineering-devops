@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Check if a domain name is provided as a command-line argument
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <domain>"
+    exit 1
+fi
+
+# Run dig command and extract relevant information
+output=$(dig "$1" | grep -A1 'ANSWER SECTION:')
+subdomain=$(echo "$output" | awk '{print $1}' | cut -d'.' -f1)  # Extract only the subdomain part
+record_type=$(echo "$output" | awk '{print $4}')
+destination=$(echo "$output" | awk '{print $5}')
+
+# Print the formatted output
+echo "The subdomain [$subdomain] is a [$record_type] record and points to [$destination]"
+
