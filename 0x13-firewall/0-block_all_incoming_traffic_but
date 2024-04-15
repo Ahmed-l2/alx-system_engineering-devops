@@ -1,3 +1,12 @@
-sudo ufw deny 22
-sudo ufw deny 443
-sudo ufw deny 80
+# Configures ufw on the machine and blocks all incoming traffic except for the follow TCP ports:
+# 22 (SSH), 443 (HTTPS) and 80 (HTTP)
+
+sudo apt-get update -y
+sudo ufw default deny incoming 
+sudo ufw default allow outgoing
+
+sudo ufw deny 22/tcp
+sudo ufw deny 443/tcp
+sudo ufw deny 80/tcp
+
+sudo ufw enable -y
