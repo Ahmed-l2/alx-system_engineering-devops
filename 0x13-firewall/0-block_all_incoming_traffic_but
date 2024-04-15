@@ -1,0 +1,3 @@
+sudo ufw deny 22
+sudo ufw deny 443
+sudo ufw deny 80
