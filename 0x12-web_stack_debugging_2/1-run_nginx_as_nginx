@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #Switches the user to 'nginx' user and sets nginx to listen on all active IPs on port 8080
 
-pkill apache2
 chmod 644 /etc/nginx/nginx.conf
-sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
-sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
+sed -i 's/#user www-data/user nginx/' /etc/nginx/nginx.conf
+sed -i 's/80/8080/' /etc/nginx/sites-available/default
+pkill apache2
 sudo -u nginx service nginx start
