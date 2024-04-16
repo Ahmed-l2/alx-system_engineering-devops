@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #Switches the user to 'nginx' user and sets nginx to listen on all active IPs on port 8080
 
-sudo sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
-sudo sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
-sudo pkill -f apache2
-sudo -u nginx nginx
+pkill apache2
+chmod 644 /etc/nginx/nginx.conf
+sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
+sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
+sudo -u nginx service nginx start
