@@ -5,17 +5,18 @@ from sys import argv
 
 
 def fetch_data(id):
+    """Fetch employee data from rest api"""
     max_task = 0
     done_task = 0
     task_list = []
     todos = "https://jsonplaceholder.typicode.com/todos"
     users = f"https://jsonplaceholder.typicode.com/users/{id}"
 
-    u_list = requests.get(users).json
-    t_list = requests.get(todos).json
+    u_list = requests.get(users).json()
+    t_list = requests.get(todos).json()
 
     for key in t_list:
-        if key['userId'] == int(user_id):
+        if key['userId'] == int(id):
             max_task += 1
             if key['completed'] is True:
                 task_list.append('\t ' + key['title'])
