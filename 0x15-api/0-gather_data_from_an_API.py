@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Fetch data from a Rest API"""
+"""Fetch data"""
 import requests
 from sys import argv
 
