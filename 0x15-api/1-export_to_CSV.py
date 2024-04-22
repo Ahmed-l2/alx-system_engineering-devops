@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Fetch data"""
+import csv
 import requests
 from sys import argv
-import csv
 
 
 def fetch_data(id):
