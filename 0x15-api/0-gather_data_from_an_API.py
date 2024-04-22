@@ -4,18 +4,15 @@ import requests
 from sys import argv
 
 
-def fetch_data():
-    user_id = argv[1]
+def fetch_data(id):
     max_task = 0
     done_task = 0
     task_list = []
     todos = "https://jsonplaceholder.typicode.com/todos"
-    users = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    users = f"https://jsonplaceholder.typicode.com/users/{id}"
 
-    u_response = requests.get(users)
-    t_response = requests.get(todos)
-    u_list = u_response.json()
-    t_list = t_response.json()
+    u_list = requests.get(users).json
+    t_list = requests.get(todos).json
 
     for key in t_list:
         if key['userId'] == int(user_id):
@@ -30,4 +27,4 @@ def fetch_data():
 
 
 if __name__ == "__main__":
-    fetch_data()
+    fetch_data(argv[1])
