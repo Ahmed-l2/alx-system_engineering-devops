@@ -21,7 +21,7 @@ def fetch_data(id):
                     "username": user_list['username']}
             task_list.append(task)
 
-    data = {id: task_list}
+    data = {str(id): task_list}
 
     with open(f"{id}.json", "w") as file:
         json.dump(data, file)
