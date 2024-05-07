@@ -10,7 +10,7 @@ def top_ten(subreddit):
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
 
     header = {'User-Agent': 'Chrome'}
-    limit = {'limit': 10}
+    limit = {'limit': 9}
     response = requests.get(url, headers=header, params=limit,
                             allow_redirects=False)
 
