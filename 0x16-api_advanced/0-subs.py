@@ -6,6 +6,9 @@ import requests
 def number_of_subscribers(subreddit):
     """Fetches subreddit subcount"""
 
+    if not subreddit:
+        return 0
+
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
 
     header = {'User-Agent': 'Mozilla/5.0'}
