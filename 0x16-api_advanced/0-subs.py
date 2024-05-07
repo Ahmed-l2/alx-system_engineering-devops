@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """Script that fetches Number of subscribers for a subreddit"""
 
 from sys import argv
