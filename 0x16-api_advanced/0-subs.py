@@ -5,13 +5,13 @@ import requests
 
 def number_of_subscribers(subreddit):
     """
-    Fetches subreddit subcount
+    Queries REDDIT API and fetches subreddit subcount
 
     Args:
         subreddit (str): the given subreddit
 
     Returns:
-        returns the subcount otherwise 0 if invalid
+        int: returns the subcount otherwise 0 if invalid
     """
 
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
