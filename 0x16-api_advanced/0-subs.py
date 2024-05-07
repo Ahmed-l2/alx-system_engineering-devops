@@ -8,7 +8,7 @@ import requests
 def fetchSubs():
     """Fetches subreddit subcount"""
     if len(argv) < 2:
-        return "Usage: {} <subreddit>".format(argv[0])
+        return print("Usage: {} <subreddit>".format(argv[0]))
 
     url = 'https://www.reddit.com/r/{}/about.json'.format(argv[1])
 
@@ -17,7 +17,7 @@ def fetchSubs():
     if response.status_code == 200:
         print(response.json()['data']['subscribers'])
     else:
-        return 0
+        return print(0)
 
 
 if __name__ == '__main__':
