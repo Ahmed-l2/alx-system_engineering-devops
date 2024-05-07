@@ -4,7 +4,9 @@
 import requests
 from sys import argv
 
+
 def fetchSubs():
+    """Fetches subreddit subcount"""
     if len(argv) < 2:
         return "Usage: {} <subreddit>".format(argv[0])
 
@@ -16,6 +18,7 @@ def fetchSubs():
         print(response.json()['data']['subscribers'])
     else:
         return 0
+
 
 if __name__ == '__main__':
     fetchSubs()
