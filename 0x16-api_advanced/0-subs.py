@@ -1,8 +1,8 @@
 #!/usr/bin/python
 """Script that fetches Number of subscribers for a subreddit"""
 
-import requests
 from sys import argv
+import requests
 
 
 def fetchSubs():
