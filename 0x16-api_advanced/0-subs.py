@@ -6,7 +6,7 @@ import requests
 def number_of_subscribers(subreddit):
     """Fetches subreddit subcount"""
 
-    if not subreddit:
+    if not subreddit or type(subreddit) is not str:
         return 0
 
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
