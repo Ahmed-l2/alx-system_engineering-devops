@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Fetches Reddit API"""
+from collections import Counter
 import requests
 import sys
-from collections import Counter
 
 
 def count_words(subreddit, word_list, after=None, count_dict=None):
