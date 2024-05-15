@@ -2,7 +2,6 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
-    # Use IP of server as domain name
     server_name 52.3.255.136
 
     add_header X-Served-by 521150-web-01;
