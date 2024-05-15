@@ -1,0 +1,35 @@
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name 52.3.255.136
+
+    add_header X-Served-by 521150-web-01;
+
+    location = /airbnb-onepage/ {
+        proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
+    }
+
+    location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+        proxy_pass http://0.0.0.0:5001/number_odd_or_even/$1;
+    }
+
+    location /api/ {
+        proxy_pass http://0.0.0.0:5002;
+    }
+
+    location / {
+        proxy_pass http://0.0.0.0:5003;
+    }
+
+    location /static/ {
+        alias /home/ubuntu/AirBnb_clone_v4/web_dynamic/static/;
+        try_files \$uri \$uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    location /404 {
+        root /var/www/html;
+        internal;
+    }
+}
