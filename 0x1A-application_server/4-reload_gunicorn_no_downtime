@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
 # reloads Gunicorn in a gracefull way
 
-pgrep gunicon | xargs kill -HUP
+guni_pids=$(pgrep gunicorn)
+
+if [ -z "$guni_pids" ]; then
+    exit 1
+fi
+
+for pid in $guni_pids; do
+    kill -HUP "$pid"
+done
