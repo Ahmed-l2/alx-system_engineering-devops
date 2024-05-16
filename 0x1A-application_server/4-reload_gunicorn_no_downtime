@@ -9,6 +9,6 @@ if [ -z "$guni_pids" ]; then
 fi
 
 for pid in $guni_pids; do
-    kill -HUP "$pid"
+    pkill -HUP "$pid"
     echo "Successfully reloaded Gunicorn"
 done
