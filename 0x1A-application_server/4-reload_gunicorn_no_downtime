@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # reloads Gunicorn in a gracefull way
 
-PID=`ps aux | grep gunicorn | grep master | awk '{ print $2 }'`
+PID=$(pgrep -f 'gunicorn.*master')
 
 if [ "$PID" ]; then
-    sudo kill -HUP $PID
+    sudo kill -HUP "$PID"
 fi
-
