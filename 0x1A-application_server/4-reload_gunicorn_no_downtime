@@ -4,3 +4,4 @@
 if pgrep -q gunicorn; then
     pgrep gunicorn | xargs kill -HUP
     echo "Gunicorn reloaded."
+fi
