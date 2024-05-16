@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # reloads Gunicorn in a gracefull way
 
-pid=$(pgrep -f "gunicorn.*web_flask.0-hello_route:app")
+PID=`ps aux | grep gunicorn | grep master | awk '{ print $2 }'`
 
-kill -HUP "$pid"
+kill -HUP $PID
