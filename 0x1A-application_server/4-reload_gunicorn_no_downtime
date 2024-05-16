@@ -3,4 +3,7 @@
 
 PID=`ps aux | grep gunicorn | grep master | awk '{ print $2 }'`
 
-kill -HUP $PID
+if [ "$PID" ]; then
+    sudo kill -HUP $PID
+fi
+
