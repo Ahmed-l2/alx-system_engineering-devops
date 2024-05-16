@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 # reloads Gunicorn in a gracefull way
-sudo systemctl kill -s HUP gunicorn.service
+
+if pgrep -q gunicorn; then
+    pgrep gunicorn | xargs kill -HUP
+    echo "Gunicorn reloaded."
