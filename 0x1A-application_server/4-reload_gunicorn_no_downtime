@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
 # reloads Gunicorn in a gracefull way
 
-PID=$(pgrep -f 'gunicorn.*master')
-
-if [ -n "$PID" ]; then
-    kill -HUP "$PID"
-fi
+pgrep gunicon | xargs kill -HUP
