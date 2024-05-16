@@ -3,6 +3,6 @@
 
 PID=$(pgrep -f 'gunicorn.*master')
 
-if [ "$PID" ]; then
-    sudo kill -HUP "$PID"
+if [ -n "$PID" ]; then
+    kill -HUP "$PID"
 fi
